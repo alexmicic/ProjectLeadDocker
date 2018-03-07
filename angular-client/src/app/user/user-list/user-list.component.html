@@ -1,0 +1,17 @@
+<div class="content-padding">
+    <h1 class="title">My Team Members</h1>
+    <div class="row users" *ngIf="users && users.length > 0">
+      <mat-card class="user" *ngFor="let user of users">
+        <mat-card-header>
+          <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+          <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <!-- <button mat-icon-button color="primary"><mat-icon >mode_edit</mat-icon></button> -->
+          <button class="f-right" mat-icon-button color="warn"><mat-icon (click)="deleteUser(user._id)">delete</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <a mat-raised-button color="primary" (click)="addUser()">Add new user</a>
+    <a mat-raised-button (click)="pullUser()">Pull user to the team</a>
+  </div>

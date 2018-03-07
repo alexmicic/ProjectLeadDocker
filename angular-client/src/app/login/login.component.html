@@ -1,0 +1,16 @@
+<div class="login flex flex-column">
+  <h1 class="login-logo"><mat-icon>trending_up</mat-icon> Project<span>Lead</span> App</h1>
+  <br>
+  <h4>Welcome! Please login to continue.</h4>
+  <form #loginForm="ngForm">
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="email" type="text" value="" placeholder="Email" [ngModel]="user?.email" (ngModelChange)="user.email=$event" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="password" type="password" value="" placeholder="Password" [ngModel]="user?.password" (ngModelChange)="user.password=$event" required>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>

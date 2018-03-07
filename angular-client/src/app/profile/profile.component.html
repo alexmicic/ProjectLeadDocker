@@ -1,0 +1,29 @@
+<div class="content-padding">
+  <h3>Update Profile</h3>
+  <br>
+  <form #userForm="ngForm">
+      <mat-form-field class="form-field-full-width">
+        <input matInput name="firstName" type="text" value="" placeholder="First name" [ngModel]="user?.firstName" (ngModelChange)="user.firstName=$event" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-field-full-width">
+        <input matInput name="lastName" type="text" value="" placeholder="Last name" [ngModel]="user?.lastName" (ngModelChange)="user.lastName=$event" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-field-full-width">
+        <input matInput name="phone" type="text" value="" placeholder="Phone" [ngModel]="user?.phone" (ngModelChange)="user.phone=$event" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-field-full-width">
+        <input matInput name="email" type="email" value="" placeholder="Email" [ngModel]="user?.email" (ngModelChange)="user.email=$event" required>
+      </mat-form-field>
+  
+       <mat-form-field class="form-field-full-width">
+        <input matInput name="password" type="password" value="" placeholder="Password" [ngModel]="user?.password" (ngModelChange)="user.password=$event" required>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="userForm.invalid">SAVE</button>
+      <button mat-raised-button (click)="back()">BACK</button>
+      <small class="form-text text-muted">{{ msg }}</small>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="perspective">
+
+  <div class="perspective-sidebar">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <button mat-raised-button [routerLink]="['./']">Backlog</button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+          <button mat-raised-button [routerLink]="['./sprint']">Active sprint</button>
+        </mat-list-item>
+      <mat-list-item role="listitem">
+        <button mat-raised-button [routerLink]="['./history']">History</button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button mat-raised-button [routerLink]="['./reports']">Reports</button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div class="perspective-right">
+    <!-- router outlet for children of /boards/:id route -->
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

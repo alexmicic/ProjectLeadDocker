@@ -1,0 +1,32 @@
+<div class="content-padding">
+  <h3>Add Board</h3>
+  <br>
+  <form #boardForm="ngForm">
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="name" type="text" value="" placeholder="Board name" [ngModel]="board?.name" (ngModelChange)="board.name=$event" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <mat-select name="type" placeholder="Board type" [ngModel]="board?.type" (ngModelChange)="board.type=$event">
+        <mat-option value="SCRUM">SCRUM</mat-option>
+        <mat-option value="KANBAN">KANBAN</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width hidden">
+      <input matInput name="project" type="text" [ngModel]="board?.project" (ngModelChange)="board.project=$event" placeholder="Project id" required readonly>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <mat-select name="columns" placeholder="Columns" [ngModel]="board?.columns" (ngModelChange)="board.columns=$event" multiple required>
+        <mat-option *ngFor="let column of columns" [value]="column" [disabled]="column === 'OPEN' || column === 'DONE'">{{column}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="boardForm.invalid">SAVE</button>
+    <button mat-raised-button (click)="close()">CLOSE</button>
+    <small class="form-text text-muted">{{ msg }}</small>
+  </form>
+
+</div>
+  

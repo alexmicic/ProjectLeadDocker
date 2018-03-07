@@ -1,0 +1,21 @@
+<div class="content-padding">
+    <h3>Add Team</h3>
+    <br>
+    <form #teamForm="ngForm">
+      <mat-form-field class="form-field-full-width">
+        <input matInput name="name" type="text" value="" placeholder="Team name" [ngModel]="team?.name" (ngModelChange)="team.name=$event" required>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-full-width">
+        <mat-select name="type" placeholder="Assign a Project" [ngModel]="team?.project" (ngModelChange)="team.project=$event" required>
+          <mat-option *ngFor="let project of projects" value="{{ project._id }}">{{ project.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="teamForm.invalid">SAVE</button>
+      <button mat-raised-button (click)="close()">CLOSE</button>
+      <small class="form-text text-muted">{{ msg }}</small>
+    </form>
+  
+  </div>
+    

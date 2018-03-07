@@ -1,0 +1,18 @@
+<div class="content-padding">
+  <h1 class="title">My Boards</h1>
+  <p *ngIf="!boards">Please add your first board.</p>
+  <div class="row boards" *ngIf="boards && boards.length > 0">
+    <mat-card class="board" *ngFor="let board of boards">
+      <mat-card-header>
+        <mat-card-title>{{ board.name }}</mat-card-title>
+        <mat-card-subtitle>{{ board.type }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-icon-button color="primary" routerLink="./{{ board._id }}"><mat-icon>remove_red_eye</mat-icon></button>
+        <button mat-icon-button color="primary" *ngIf="auth.isAdmin()" (click)="editBoard(board._id)"><mat-icon >mode_edit</mat-icon></button>
+        <button class="f-right" mat-icon-button color="warn" *ngIf="auth.isAdmin()" (click)="deleteBoard(board._id)"><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <a mat-raised-button color="primary" (click)="addBoard()" *ngIf="auth.isAdmin()">Add new board</a>
+</div>

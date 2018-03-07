@@ -1,0 +1,32 @@
+.users {
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.users .user {
+  transition: background-color .5s;
+  flex: 1;
+}
+
+.users .user:hover,
+.users .user:active {
+  cursor: pointer;
+  outline: none;
+  background-color: #f8f8f8;
+}
+
+.users .user + .user {
+  margin-top: 1rem;
+}
+
+.users .user {
+  min-width: calc(100% - 32px);
+}
+
+@media screen and (min-width: 768px){
+  .users .user {
+    min-width: calc(100% - 48px);
+  }
+}

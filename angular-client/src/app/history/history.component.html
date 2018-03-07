@@ -1,0 +1,63 @@
+<mat-toolbar class="mat-toolbar-issue">
+  <mat-toolbar-row>
+    <h3>History</h3>
+    <span class="example-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+  
+<!-- List of DONE issues -->
+<div *ngIf="sprints && sprints.length > 0">
+  <mat-accordion class="mat-accordion-done issue-list-closed">
+    <mat-expansion-panel *ngFor="let sprint of sprints">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ sprint.name }}
+        </mat-panel-title>
+        <mat-panel-description>
+          started: {{ sprint.dateStart | date:'short' }}, ended: {{ sprint.dateEnd | date:'short' }}, total points {{ sprint.totalPoints }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <mat-list class="issue-list" role="list" *ngFor="let issue of issues[sprint._id]" [ngClass]="{ 'issue-list-mine' : auth.getUserId() === issue.assignee }">
+          <div class="row">
+            <mat-list-item role="listitem" matTooltip="{{issue.priority}}" matTooltipPosition="left" (click)="viewIssue(issue._id)">
+                <mat-card>
+                  <div class="row">
+                    <div class="issue-list-item-priority"
+                      [ngClass]="{
+                        'low' : issue.priority === 'LOW',
+                        'high' : issue.priority === 'HIGH',
+                        'critical' : issue.priority === 'CRITICAL',
+                        'blocker' : issue.priority === 'BLOCKER'
+                      }">
+                      <mat-icon *ngIf="issue.priority === 'LOW'">arrow_downward</mat-icon>
+                      <mat-icon *ngIf="issue.priority === 'HIGH'">arrow_upward</mat-icon>
+                      <mat-icon *ngIf="issue.priority === 'CRITICAL'">priority_high</mat-icon>
+                      <mat-icon *ngIf="issue.priority === 'BLOCKER'">block</mat-icon>
+                    </div>
+                    <p class="issue-list-item-name">{{ issue.name }} <br>
+                      <span class="issue-list-item-date">{{ issue.date | date:'short' }}</span>
+                    </p>
+                    <div class="example-spacer"></div>
+                    <div class="issue-list-item-assignee">
+                      <p>Assigneed to:<br>
+                        <span class="issue-list-item-assignee-name" *ngIf="!issue.assignee">Unassigneed</span>
+                        <span class="issue-list-item-assignee-name" *ngIf="issue.assignee">{{ issue.assignee }}</span>
+                      </p>
+                    </div>
+                    <div class="issue-list-item-points">
+                      {{ issue.points }}
+                    </div>
+                  </div>
+                </mat-card>
+            </mat-list-item>
+          </div>
+        </mat-list>
+      
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<p class="empty-msg" *ngIf="sprints && sprints.length === 0">
+  No previous sprints available.
+</p>

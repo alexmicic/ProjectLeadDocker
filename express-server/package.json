@@ -1,0 +1,20 @@
+{
+  "name": "jira_server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server"
+  },
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^7.4.3",
+    "mongoose": "^4.10.8",
+    "nodemailer": "^4.5.0"
+  },
+  "devDependencies": {
+    "mongoose-seed": "^0.4.1"
+  }
+}

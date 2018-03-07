@@ -1,0 +1,62 @@
+<mat-toolbar class="mat-toolbar-issue">
+  <mat-toolbar-row>
+    <h3>Active Sprint <strong *ngIf="sprint && sprint.length">{{ sprint[0]?.name }}, Points: {{ sprintPoints }}</strong></h3>
+    <span class="example-spacer"></span>
+    <span *ngIf="sprint && sprint.length" class="sprint-time" 
+          matTooltip="Start date: {{sprint[0]?.dateStart | date:'short'}} 
+          End date: {{sprint[0]?.dateEnd | date:'short'}}" 
+          matTooltipPosition="below"
+          [matTooltipClass]="'sprint-dates'">
+      <mat-icon>access_time</mat-icon> {{ daysLeft }} days left
+    </span>
+    <button mat-raised-button color="warn" 
+    (click)="closeSprint(sprint[0]?._id)" *ngIf="issues && issues.length && auth.isAdmin()"><mat-icon>close</mat-icon> Close sprint</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="columns" *ngIf="issues && issues.length">
+  <mat-card class="col" *ngFor="let column of columns" attr.data-column="{{column}}">
+    <h3>{{ column }}</h3>
+    <div class="issue-list" [dragula]='"bag-one"'>
+      <div class="issue" *ngFor="let issue of issues | issuefilter:column" attr.data-id="{{issue._id}}" (click)="viewIssue(issue._id)">
+        <div class="row">
+            <div class="issue-priority"
+            [ngClass]="{
+              'low' : issue.priority === 'LOW',
+              'high' : issue.priority === 'HIGH',
+              'critical' : issue.priority === 'CRITICAL',
+              'blocker' : issue.priority === 'BLOCKER'
+            }">
+            <mat-icon *ngIf="issue.priority === 'LOW'">arrow_downward</mat-icon>
+            <mat-icon *ngIf="issue.priority === 'HIGH'">arrow_upward</mat-icon>
+            <mat-icon *ngIf="issue.priority === 'CRITICAL'">priority_high</mat-icon>
+            <mat-icon *ngIf="issue.priority === 'BLOCKER'">block</mat-icon>
+          </div>
+          <div class="issue-title">
+            {{ issue.name }}
+          </div>
+          <div class="example-spacer"></div>
+          <div class="issue-points">
+            {{ issue.points }}
+          </div>
+        </div>
+        <div class="row row-assignee">
+          <mat-icon>face</mat-icon>
+          <div class="issue-assignee">
+            {{ issue.assignee }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<!-- <ul [dragula]='"bag-one"'></ul> -->
+
+<p class="empty-msg" *ngIf="!issues">
+  You do not have active sprint.
+</p>
+
+<p class="empty-msg" *ngIf="issues && issues.length === 0">
+  No issues in this sprint.
+</p>

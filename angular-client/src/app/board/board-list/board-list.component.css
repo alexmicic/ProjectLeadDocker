@@ -1,0 +1,39 @@
+.boards {
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .boards {
+    flex-direction: row;
+  }
+}
+
+.boards .board {
+  transition: background-color .5s;
+  flex: 1;
+}
+
+.boards .board:hover,
+.boards .board:active {
+  background-color: #f8f8f8;
+}
+
+.boards .board + .board {
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .boards .board {
+    min-width: calc(100% - 32px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .boards .board + .board {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+}

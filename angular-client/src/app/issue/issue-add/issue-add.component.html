@@ -1,0 +1,74 @@
+<div class="content-padding">
+  <h3>Add Issue</h3>
+  <br>
+  <form #issueForm="ngForm">
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="name" type="text" value="" placeholder="Issue name" [ngModel]="issue?.name" (ngModelChange)="issue.name=$event" required>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="form-field-full-width">
+      <textarea class="editor-textarea" id="desc" matInput name="desc" value="" placeholder="Description" [ngModel]="issue?.desc" (ngModelChange)="issue.desc=$event"></textarea>
+    </mat-form-field> -->
+
+    <quill-editor 
+      name="desc" 
+      [ngModel]="issue?.desc" 
+      (ngModelChange)="issue.desc=$event"
+      placeholder="Description..."
+      [style]="{'height': '200px', 'margin-bottom': '1rem'}"></quill-editor>
+
+    <mat-form-field class="form-field-full-width">
+      <mat-select name="type" placeholder="Priority" [ngModel]="issue?.priority" (ngModelChange)="issue.priority=$event">
+        <mat-option value="LOW">LOW</mat-option>
+        <mat-option value="HIGH">HIGH</mat-option>
+        <mat-option value="CRITICAL">CRITICAL</mat-option>
+        <mat-option value="BLOCKER">BLOCKER</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <mat-select name="points" placeholder="Points" [ngModel]="issue?.points" (ngModelChange)="issue.points=$event">
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="13">13</mat-option>
+        <mat-option value="21">21</mat-option>
+        <mat-option value="34">34</mat-option>
+        <mat-option value="55">55</mat-option>
+        <mat-option value="89">89</mat-option>
+        <mat-option value="144">144</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width hidden" *ngIf="auth.isAdmin() === false">
+      <input matInput name="assignee" type="text" [ngModel]="issue?.assignee" (ngModelChange)="issue.assignee=$event" placeholder="Assignee" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width" *ngIf="auth.isAdmin() === true">
+      <mat-select name="assignee" placeholder="Assignee" [ngModel]="issue?.assignee" (ngModelChange)="issue.assignee=$event">
+        <mat-option [value]="">Unassigneed</mat-option>
+        <mat-optgroup *ngFor="let group of usersGroups" [label]="group.label">
+          <mat-option *ngFor="let user of group.users" [value]="user._id">
+            {{ user.firstName }} {{ user.lastName }}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width hidden">
+      <input matInput name="board" type="text" [ngModel]="issue?.board" (ngModelChange)="issue.board=$event" placeholder="Board id" required readonly>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width hidden">
+      <input matInput name="user" type="text" [ngModel]="issue?.user" (ngModelChange)="issue.user=$event" placeholder="User who creates this issue" readonly>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="issueForm.invalid">SAVE</button>
+    <button mat-raised-button (click)="close()">CLOSE</button>
+    <small class="form-text text-muted">{{ msg }}</small>
+  </form>
+  
+</div>
+    

@@ -1,0 +1,20 @@
+.perspective {
+  display: flex;
+}
+
+.perspective-sidebar {
+  max-width: 200px;
+  flex: 1;
+  background: #fdfdfd;
+  border-right: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.perspective-right {
+  flex: 1;
+}
+
+.perspective-sidebar .mat-list-item button {
+  width: 100%;
+  text-align: left;
+}

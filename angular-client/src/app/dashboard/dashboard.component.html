@@ -1,0 +1,71 @@
+<div class="content-padding">
+  <p class="jumbotron">
+    Welcome to the ProjectLead application! Below you will find your projects<span *ngIf="auth.isAdmin() === true">, teams and latest comments</span>.
+  </p>
+
+  <div class="row dashboard">
+    <mat-card class="dashboard-item">
+      <mat-card-header>
+        <img mat-card-avatar src="https://picsum.photos/100?image=0">
+        <mat-card-title>My Projects</mat-card-title>
+        <mat-card-subtitle>Here is a list of your projects.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item class="project-item" *ngFor="let project of projects">
+            <a mat-raised-button routerLink="/projects/{{ project._id }}">{{ project.name }}</a>
+            <button class="project-item-delete" mat-icon-button color="warn" *ngIf="auth.isAdmin() === true"><mat-icon (click)="deleteProject(project._id)">delete</mat-icon></button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addProject()" *ngIf="auth.isAdmin() === true">Add new project</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="dashboard-item" *ngIf="auth.isAdmin() === true">
+      <mat-card-header>
+        <img mat-card-avatar src="https://picsum.photos/100?image=74">
+        <mat-card-title>My Teams</mat-card-title>
+        <mat-card-subtitle>Here is a list of your teams.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item class="project-item" *ngFor="let team of teams">
+            <a mat-raised-button routerLink="/teams/{{ team._id }}">{{ team.name }}</a>
+            <button class="project-item-delete" mat-icon-button color="warn"><mat-icon (click)="deleteTeam(team._id)">delete</mat-icon></button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addTeam()">Add new team</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="dashboard-item" *ngIf="auth.isAdmin() === true">
+      <mat-card-header>
+        <img mat-card-avatar src="https://picsum.photos/100?image=4">
+        <mat-card-title>Latest Comments</mat-card-title>
+        <mat-card-subtitle>Most recent comments.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list class="comment-items">
+          <mat-list-item class="comment-item" *ngFor="let comment of comments">
+            <div class="comment-item-content">
+              <div class="comment-desc"[innerHTML]="comment.desc"></div>
+              <div class="row">
+                  <p class="comment-date">{{ comment.dateCreated | date:'short' }}</p>
+                  <div class="example-spacer"></div>
+                  <p class="comment-user">{{ comment.userFullName }}</p>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <p class="jumbotron jumbotron--footer">
+    Need help? <a routerLink="/help">Click here</a> for a short guide.
+  </p>
+</div>

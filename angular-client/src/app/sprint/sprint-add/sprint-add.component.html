@@ -1,0 +1,27 @@
+<div class="content-padding">
+  <h3>Add Sprint</h3>
+  <br>
+  <form #sprintForm="ngForm">
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="name" type="text" value="" placeholder="Sprint name" [ngModel]="sprint?.name" (ngModelChange)="sprint.name=$event" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <input name="dateStart" type="text" value="" matInput [matDatepicker]="pickerStart" placeholder="Choose a date" disabled [ngModel]="sprint?.dateStart" (ngModelChange)="sprint.dateStart=$event" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <input name="dateEnd" type="text" value="" matInput [matDatepicker]="pickerEnd" placeholder="Choose a date" disabled [ngModel]="sprint?.dateEnd" (ngModelChange)="sprint.dateEnd=$event" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
+    </mat-form-field>
+    
+    <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="sprintForm.invalid">SAVE</button>
+    <button mat-raised-button (click)="close()">CLOSE</button>
+    <small class="form-text text-muted">{{ msg }}</small>
+  </form>
+
+</div>
+  

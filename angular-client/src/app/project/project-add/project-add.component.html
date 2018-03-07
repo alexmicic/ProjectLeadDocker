@@ -1,0 +1,15 @@
+<div class="content-padding">
+  <h3>Add Project</h3>
+  <br>
+  <form #projectForm="ngForm">
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="name" type="text" value="" placeholder="Project name" [ngModel]="project?.name" (ngModelChange)="project.name=$event" required>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="projectForm.invalid">SAVE</button>
+    <button mat-raised-button (click)="close()">CLOSE</button>
+    <small class="form-text text-muted">{{ msg }}</small>
+  </form>
+
+</div>
+  

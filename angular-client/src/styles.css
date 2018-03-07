@@ -1,0 +1,142 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.form-field-full-width {
+  width: 100%;
+}
+
+.form-field-full-width input,
+.form-field-full-width select,
+.form-field-full-width textarea {
+  width: 100%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-align-start .mat-grid-tile .mat-figure {
+  align-items: flex-start;
+}
+
+.flex-justify-start .mat-grid-tile .mat-figure {
+  justify-content: flex-start;
+}
+
+.flex-column .mat-grid-tile .mat-figure {
+  flex-direction: column;
+}
+
+.mat-menu-first {
+  background: #eee !important;
+  margin-top: -8px;
+  color: #000 !important;
+}
+
+.mat-toolbar-main .mat-toolbar-main--home {
+  color: #fff;
+  text-decoration: none;
+}
+
+.mat-toolbar-main .mat-toolbar-main--home:hover {
+  opacity: .75;
+}
+
+.content-padding {
+  padding: 1rem;
+}
+
+.back-btn {
+  color: #333 !important;
+  margin-right: 2rem !important; 
+}
+
+.title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.row {
+  display: flex;
+}
+
+.mat-raised-button {
+  text-transform: uppercase !important;
+}
+
+.f-right {
+  float: right;
+}
+
+.f-left {
+  float: left;
+}
+
+.dashboard .mat-list-item-content {
+  padding: 0 !important;
+}
+
+/* drag and drop */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+/* drag and drop */
+
+.sprint-dates {
+  font-size: 14px !important;
+  line-height: 2.5;
+  max-width: 200px !important;
+}
+
+.comment-item .comment-desc img {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+}

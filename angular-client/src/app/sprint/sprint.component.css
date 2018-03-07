@@ -1,0 +1,136 @@
+.empty-msg {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.columns {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.columns .col {
+  flex: 1;
+  padding: 0;
+  margin: 0 .5rem;
+}
+
+.columns .col:first-child {
+  margin-left: 0;
+}
+
+.columns .col:last-child {
+  margin-right: 0;
+}
+
+.columns .col h3 {
+  text-align: center;
+  font-size: 14px;
+  margin: 1rem 0 .75rem 0;
+}
+
+.issue-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.issue {
+  flex: 0 1 auto;
+  margin: .25rem 0;
+  background: #fff2bb;
+  padding: .5rem;
+}
+
+.issue:hover {
+  cursor: pointer;
+  cursor: -webkit-grab;
+}
+
+.issue-list .issue:last-child {
+  margin-bottom: 0;
+}
+
+.issue .issue-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.issue .row {
+  align-items: flex-start;
+}
+
+.issue-priority {
+  margin-right: .5rem;
+}
+
+.issue-priority .mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.issue-priority.low .mat-icon {
+  color: #4CAF50;
+}
+
+.issue-priority.high .mat-icon {
+  color: #FF9800;
+}
+
+.issue-priority.critical .mat-icon {
+  color: #F44336;
+}
+
+.issue-priority.blocker .mat-icon {
+  color: #F44336;
+}
+
+.issue-points {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 50%;
+  background: #3f51b5;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-left: .5rem;
+}
+
+.row-assignee {
+  margin-top: .5rem;
+}
+
+.row-assignee .mat-icon {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  font-size: 16px;
+  margin-right: .5rem;
+}
+
+.issue-assignee {
+  font-size: 14px;
+}
+
+.sprint-time {
+  margin-right: 1rem;
+  font-size: .875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sprint-time .mat-icon {
+  font-size: .875rem;
+  width: .875rem;
+  height: .875rem;
+  margin-right: .5rem;
+}

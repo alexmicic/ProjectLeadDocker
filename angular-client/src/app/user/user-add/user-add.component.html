@@ -1,0 +1,57 @@
+<div class="content-padding" *ngIf="data.pull === false">
+  <h3>Add User</h3>
+  <br>
+  <form #userForm="ngForm">
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="firstName" type="text" value="" placeholder="First name" [ngModel]="user?.firstName" (ngModelChange)="user.firstName=$event" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="lastName" type="text" value="" placeholder="Last name" [ngModel]="user?.lastName" (ngModelChange)="user.lastName=$event" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="phone" type="text" value="" placeholder="Phone" [ngModel]="user?.phone" (ngModelChange)="user.phone=$event" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <input matInput name="email" type="email" value="" placeholder="Email" [ngModel]="user?.email" (ngModelChange)="user.email=$event" required>
+    </mat-form-field>
+
+     <mat-form-field class="form-field-full-width">
+      <input matInput name="password" type="password" value="" placeholder="Password" [ngModel]="user?.password" (ngModelChange)="user.password=$event" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-full-width">
+      <mat-select name="teams" placeholder="Teams" [ngModel]="user?.teams" (ngModelChange)="user.teams=$event" multiple required>
+        <mat-option *ngFor="let team of teams" [value]="team._id">{{ team.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-slide-toggle color="primary" name="admin" [ngModel]="user?.isAdmin" (ngModelChange)="user.isAdmin=$event">User is admin</mat-slide-toggle><br><br>
+
+    <button type="submit" mat-raised-button color="primary" (click)="save()" [disabled]="userForm.invalid">SAVE</button>
+    <button mat-raised-button (click)="close()">CLOSE</button>
+    <small class="form-text text-muted">{{ msg }}</small>
+  </form>
+
+</div>
+  
+<div class="content-padding" *ngIf="data.pull === true">
+  <h3>Pull User to the team</h3>
+  <br>
+  <form #userForm="ngForm">
+
+    <mat-form-field class="form-field-full-width">
+      <mat-select name="id" placeholder="User" [ngModel]="selectedUser" (ngModelChange)="selectedUser=$event" required>
+        <mat-option *ngFor="let user of users" [value]="user._id">{{ user.firstName }} {{ user.lastName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" (click)="pullSave()" [disabled]="userForm.invalid">Pull to the team</button>
+    <button mat-raised-button (click)="close()">CLOSE</button>
+    <small class="form-text text-muted">{{ msg }}</small>
+  </form>
+
+</div>
+  

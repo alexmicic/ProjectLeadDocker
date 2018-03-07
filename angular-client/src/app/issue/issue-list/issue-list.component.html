@@ -1,0 +1,106 @@
+<mat-toolbar class="mat-toolbar-issue">
+  <mat-toolbar-row>
+    <h3>Backlog</h3>
+    <span class="example-spacer"></span>
+    <button mat-raised-button (click)="addIssue()"><mat-icon>add</mat-icon> Add new issue</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- List of DONE issues -->
+<mat-accordion class="mat-accordion-done issue-list-closed" *ngIf="issuesDone && issuesDone.length > 0">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Closed issues
+      </mat-panel-title>
+      <mat-panel-description>
+        A list of already closed issues
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-list class="issue-list" role="list" *ngFor="let issue of issuesDone" [ngClass]="{ 'issue-list-mine' : auth.getUserId() === issue.assignee }">
+        <div class="row">
+          <mat-list-item role="listitem" matTooltip="{{issue.priority}}" matTooltipPosition="left" (click)="viewIssue(issue, issue._id)">
+              <mat-card>
+                <div class="row">
+                  <div class="issue-list-item-priority"
+                    [ngClass]="{
+                      'low' : issue.priority === 'LOW',
+                      'high' : issue.priority === 'HIGH',
+                      'critical' : issue.priority === 'CRITICAL',
+                      'blocker' : issue.priority === 'BLOCKER'
+                    }">
+                    <mat-icon *ngIf="issue.priority === 'LOW'">arrow_downward</mat-icon>
+                    <mat-icon *ngIf="issue.priority === 'HIGH'">arrow_upward</mat-icon>
+                    <mat-icon *ngIf="issue.priority === 'CRITICAL'">priority_high</mat-icon>
+                    <mat-icon *ngIf="issue.priority === 'BLOCKER'">block</mat-icon>
+                  </div>
+                  <p class="issue-list-item-name">{{ issue.name }} <br>
+                    <span class="issue-list-item-date">{{ issue.date | date:'short' }}</span>
+                  </p>
+                  <div class="example-spacer"></div>
+                  <div class="issue-list-item-assignee">
+                    <p>Assigneed to:<br>
+                      <span class="issue-list-item-assignee-name" *ngIf="!issue.assignee">Unassigneed</span>
+                      <span class="issue-list-item-assignee-name" *ngIf="issue.assignee">{{ issue.assignee }}</span>
+                    </p>
+                  </div>
+                  <div class="issue-list-item-points">
+                    {{ issue.points }}
+                  </div>
+                </div>
+              </mat-card>
+          </mat-list-item>
+        </div>
+      </mat-list>
+    
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!-- List of NOT DONE issues -->
+<mat-list class="issue-list" role="list" *ngFor="let issue of issues" [ngClass]="{ 'issue-list-mine' : auth.getUserId() === issue.assignee }">
+  <div class="row">
+    <mat-list-item role="listitem" matTooltip="{{issue.priority}}" matTooltipPosition="left" (click)="viewIssue(issue, issue._id)">
+        <mat-card>
+          <div class="row">
+            <div class="issue-list-item-priority"
+              [ngClass]="{
+                'low' : issue.priority === 'LOW',
+                'high' : issue.priority === 'HIGH',
+                'critical' : issue.priority === 'CRITICAL',
+                'blocker' : issue.priority === 'BLOCKER'
+              }">
+              <mat-icon *ngIf="issue.priority === 'LOW'">arrow_downward</mat-icon>
+              <mat-icon *ngIf="issue.priority === 'HIGH'">arrow_upward</mat-icon>
+              <mat-icon *ngIf="issue.priority === 'CRITICAL'">priority_high</mat-icon>
+              <mat-icon *ngIf="issue.priority === 'BLOCKER'">block</mat-icon>
+            </div>
+            <p class="issue-list-item-name">{{ issue.name }} <br>
+              <span class="issue-list-item-date">{{ issue.date | date:'short' }}</span>
+              <span class="issue-list-item-insprint"
+                *ngIf="issue.sprints.indexOf(activeSprint?._id) !== -1">In active sprint, status: {{ issue.status }}</span>
+            </p>
+            <div class="example-spacer"></div>
+            <div class="issue-list-item-assignee">
+              <p>Assigneed to:<br>
+                <span class="issue-list-item-assignee-name" *ngIf="!issue.assignee">Unassigneed</span>
+                <span class="issue-list-item-assignee-name" *ngIf="issue.assignee">{{ issue.assignee }}</span>
+              </p>
+            </div>
+            <div class="issue-list-item-points">
+              {{ issue.points }}
+            </div>
+          </div>
+        </mat-card>
+    </mat-list-item>
+    <mat-checkbox color="primary" value="issue._id" (change)="toggleSprintIssues($event, issue._id)" *ngIf="auth.isAdmin()"></mat-checkbox>
+  </div>
+</mat-list>
+<div class="sprint-start" *ngIf="auth.isAdmin() && issuesForSprint && issuesForSprint.length > 0">
+  <p *ngIf="activeSprint">You already have one active sprint. If you start new sprint, currently active sprint will be closed! </p>
+  <button mat-raised-button color="primary" (click)="startSprint()"><mat-icon>done</mat-icon> Start sprint</button>
+</div>
+
+<p class="empty-msg" *ngIf="issues && issues.length == 0">
+  Your backlog is empty.
+</p>

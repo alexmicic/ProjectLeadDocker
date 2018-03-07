@@ -1,0 +1,128 @@
+.issue-list {
+  width: 100%;
+}
+
+.issue-list .mat-list-item {
+  width: 100%;
+  height: auto !important;
+}
+
+.issue-list .mat-list-item .mat-card {
+  width: 100%;
+  background: #fff;
+  padding: 10px !important;
+  transition: background .4s;
+}
+
+.issue-list-mine .mat-list-item .mat-card {
+  background: #f7ead8;
+}
+
+.issue-list .mat-list-item .mat-card:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+.empty-msg {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.issue-list .row {
+  align-items: center;
+}
+
+.issue-list-item-priority {
+  margin-right: 1rem;
+}
+
+.issue-list-item-priority.low .mat-icon {
+  color: #4CAF50;
+}
+
+.issue-list-item-priority.high .mat-icon {
+  color: #FF9800;
+}
+
+.issue-list-item-priority.critical .mat-icon {
+  color: #F44336;
+}
+
+.issue-list-item-priority.blocker .mat-icon {
+  color: #F44336;
+}
+
+.issue-list-item-name {
+  font-weight: 700;
+}
+
+.issue-list-item-date {
+ font-size: 11px;
+ color: #999;
+ font-weight: 300;
+}
+
+.issue-list-item-assignee {
+  font-size: 11px;
+  color: #999;
+  text-align: right;
+}
+
+.issue-list-item-assignee-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+}
+
+.issue-list-item-points {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #3f51b5;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+.issue-list > .row .mat-checkbox {
+  padding: 0 1rem 0 0;
+}
+
+.sprint-start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-direction: column;
+}
+
+.sprint-start button {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.sprint-start p {
+  margin-bottom: 1rem;
+  background: #f44336;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.mat-accordion-done .mat-list-item .mat-list-item-content{
+  padding: 0 !important;
+}
+
+.issue-list-item-insprint {
+  font-weight: 400;
+  font-size: 10px;
+  background: #3f51b5;
+  color: #fff;
+  padding: 2px 4px;
+  text-transform: uppercase;
+  border-radius: 3px;
+}

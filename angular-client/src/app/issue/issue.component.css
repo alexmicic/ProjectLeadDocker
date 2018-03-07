@@ -1,0 +1,49 @@
+.issue-modal{
+  position: relative;
+  padding-bottom: 5rem;
+}
+
+.form-actions {
+  position: absolute;
+  bottom: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.comments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: .5rem;
+}
+
+.comments li {
+  margin-bottom: .5rem;
+  background: #f8f8f8;
+  border-radius: 5px;
+  padding: .5rem;
+  font-size: 12px;
+  border: 1px solid #eee;
+}
+
+.comments li.comment-mine {
+  background: #fff;
+}
+
+.comment-desc {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: .5rem;
+}
+
+.comment-desc img {
+  max-width: 100%;
+}
+
+.comment-date {
+  font-size: 10px;
+}
+
+.comment-user {
+  font-size: 10px;
+  font-weight: 700;
+}

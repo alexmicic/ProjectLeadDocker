@@ -1,0 +1,60 @@
+<mat-toolbar class="mat-toolbar-issue">
+  <mat-toolbar-row>
+    <h3>Reports</h3>
+    <span class="example-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+  
+<mat-accordion class="mat-accordion-done">
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        General
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Total days spent on this project board: <strong>{{ daysTotal }}</strong></p>
+    <p>Total number of sprints on this board: <strong>{{ sprints?.length > 0 ? sprints?.length : 0 }}</strong></p>
+    <p>Total number of sprint points on this board: <strong>{{ totalPoints }}</strong></p>
+    <p>Total number of issues: <strong>{{ totalIssues }}</strong></p>
+    <p>Total number of resolved issues: <strong>{{ totalIssuesDone }}</strong></p>
+  </mat-expansion-panel>
+  
+  <mat-expansion-panel (opened)="chartOpen()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Charts
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="report-chart" *ngIf="lineChartData && lineChartData.length > 0">
+      <h4>Points per sprint (currently active sprint excluded)</h4>
+      <canvas baseChart
+        [data]="lineChartData"
+        [legend]="lineChartLegend"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [chartType]="lineChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+    <div class="report-chart" *ngIf="pieChartData && pieChartData.length > 0">
+      <h4>Total resolved vs Not resolved issues</h4>
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+    <div class="report-chart" *ngIf="activeSprint">
+      <h4>Brake down issues per status within the current sprint</h4>
+      <canvas baseChart
+        [data]="pieChartDataBrake"
+        [labels]="pieChartLabelsBrake"
+        [chartType]="pieChartTypeBrake"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
